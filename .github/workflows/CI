@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - feature-1
+      - main
 
 jobs:
   docker:
