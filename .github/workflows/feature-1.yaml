@@ -1,0 +1,31 @@
+name: Build feature-1
+
+on:
+  push:
+    branches:
+      - feature-1
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Checkout repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Checkout pass
+        run: echo "checkout repository pass"
+
+      # 2. Build Docker image
+      - name: Build Docker image
+        run: docker build -t workflows:latest .
+      - name: Build pass
+        run: echo "docker build pass"
+
+      # 3. Run the container
+      - name: Run the container
+        run: docker run --rm workflows:latest
+      - name: Container run pass
+        run: echo "container is running"
+
+
+
