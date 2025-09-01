@@ -4,7 +4,7 @@
 
 
 # getting user input
-userInput = input("Celcius: ")
+userInput = input("Celcius: ") or 30
 
 
 def celToFar(cel):
