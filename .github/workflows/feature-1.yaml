@@ -23,9 +23,34 @@ jobs:
 
       # 3. Run the container
       - name: Run the container
-        run: docker run --rm flask-wf:latest
+        run: docker run --rm -d -p 5000:5000 flask-wf:latest
       - name: Container run pass
         run: echo "container is running"
+
+      # 4. waiting for API
+      - name: Waiting for API
+        run: |
+          for i in {1..10}; do
+            if curl -s http://localhost:5000/; then
+              echo "flask is up"
+              break
+            else
+              echo "waiting for flask"
+              sleep 1
+            fi
+          done
+
+
+      # 5. test the API
+      - name: Testing API
+        run: curl http://localhost:5000/
+      - name: API pass
+        run: echo "API OK"
+
+
+      # 6. stoping the container
+      - name: stoping the container
+        run: docker stop $(docker ps -q --filter "ancestor=flask-wf:latest")
 
 
 
