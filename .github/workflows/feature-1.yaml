@@ -17,13 +17,13 @@ jobs:
 
       # 2. Build Docker image
       - name: Build Docker image
-        run: docker build -t workflows:latest .
+        run: docker build -t flask-wf:latest .
       - name: Build pass
         run: echo "docker build pass"
 
       # 3. Run the container
       - name: Run the container
-        run: docker run --rm workflows:latest
+        run: docker run --rm flask-wf:latest
       - name: Container run pass
         run: echo "container is running"
 
