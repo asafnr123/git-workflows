@@ -1,7 +1,10 @@
-FROM python:3.11-slim
+FROM python3.12
 
-WORKDIR /app
+WORKDIR app
 
-COPY checkTemp.py .
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+COPY app.py .
+COPY car.py .
 
-CMD ["python3", "checkTemp.py"]
+CMD ["python3","app.py"]
